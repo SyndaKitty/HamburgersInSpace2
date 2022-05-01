@@ -15,6 +15,8 @@ public class NewGameOption : MonoBehaviour {
     public float CircleSize;
     public float AnimSpeed;
 
+    public bool Quit;
+
     float xScale;
 
     Vector3 velocity;
@@ -29,6 +31,12 @@ public class NewGameOption : MonoBehaviour {
         xScale = Stretch;
         anchorStart = Anchor.position;
         col = GetComponent<Collider2D>();
+
+        if (Quit && Application.platform == RuntimePlatform.WebGLPlayer) {
+            Text.enabled = false;
+            gameObject.SetActive(false);
+            enabled = false;
+        }
     }
 
     void Update() {
@@ -42,18 +50,26 @@ public class NewGameOption : MonoBehaviour {
             Text.fontSize = 9;
             Text.fontStyle = FontStyles.Bold;
             if (Input.GetMouseButtonDown(0)) {
-                SceneManager.LoadScene(1, LoadSceneMode.Single);
+                if (Quit) {
+                    Application.Quit();
+                }
+                else {
+                    SceneManager.LoadScene(1, LoadSceneMode.Single);
+                }
             }
         }
         else {
             Text.fontSize = 8;
             Text.fontStyle = FontStyles.Normal;
         }
-        Vector3 force = SpringWeight * (Anchor.position - transform.position);
-        velocity += force * Time.deltaTime;
-        velocity *= 0.7f * (1 - Time.deltaTime);
+    }
 
-        transform.position += velocity * Time.deltaTime;
+    void FixedUpdate() {
+        Vector3 force = SpringWeight * (Anchor.position - transform.position);
+        velocity += force * Time.fixedDeltaTime;
+        velocity *= 0.91f;
+
+        transform.position += velocity * Time.fixedDeltaTime;
 
         Anchor.position = anchorStart + new Vector3(Mathf.Cos(t), Mathf.Sin(t), 0) * CircleSize;
     }
