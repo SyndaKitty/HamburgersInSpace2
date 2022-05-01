@@ -10,5 +10,6 @@ public class WaitForLag : MonoBehaviour {
     IEnumerator Wait() {
         yield return new WaitForSeconds(LagTime);
         GetComponent<Animator>().enabled = true;
+        gameObject.transform.Find("Burger").gameObject.SetActive(true);
     }
 }
