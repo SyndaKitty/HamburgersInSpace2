@@ -57,7 +57,7 @@ public class NewGameOption : MonoBehaviour {
                     Application.Quit();
                 }
                 else {
-                    SceneManager.LoadScene(1, LoadSceneMode.Single);
+                    SceneManager.LoadSceneAsync(1, LoadSceneMode.Single);
                 }
             }
         }

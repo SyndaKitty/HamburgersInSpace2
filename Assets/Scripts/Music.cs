@@ -10,7 +10,7 @@ public class Music : MonoBehaviour {
     bool fading;
     float t;
 
-    bool odd;
+    bool odd = true;
 
     void Start() {
         source = GetComponent<AudioSource>();

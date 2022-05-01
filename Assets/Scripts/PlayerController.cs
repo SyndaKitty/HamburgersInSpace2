@@ -13,7 +13,9 @@ public class PlayerController : MonoBehaviour {
 
     public float Deadzone = 0.3f;
     
-    public Pickle Bullet;
+    public Pickle[] PickleSelection;
+    int pickleIndex;
+
     public float BulletSpeed;
 
     Rigidbody2D rb;
@@ -26,9 +28,10 @@ public class PlayerController : MonoBehaviour {
     bool pressedDash;
     float timeSinceShot;
     AudioSource source;
-    Vector2 shotInDirection;
     Collider2D col;
     Camera cam;
+
+    Vector2 bulletTrajectory;
 
     void Start() {
         rb = GetComponent<Rigidbody2D>();
@@ -42,6 +45,12 @@ public class PlayerController : MonoBehaviour {
     void Update() {
         LastStickPosition = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
+        pickleIndex += (int)Input.mouseScrollDelta.y;
+        pickleIndex %= PickleSelection.Length;
+        if (pickleIndex < 0) {
+            pickleIndex += PickleSelection.Length;
+        }
+
         if (Input.GetButtonDown("Dash")) {
             pressedDash = true;
         }
@@ -49,36 +58,41 @@ public class PlayerController : MonoBehaviour {
         timeSinceShot += Time.deltaTime;
         Vector2 rightStickPos = new Vector2(Input.GetAxisRaw("RightStickHorizontal"), Input.GetAxisRaw("RightStickVertical"));
         
-        if (timeSinceShot >= ShootingSpeed) {
+        if (timeSinceShot >= PickleSelection[pickleIndex].WaitTime) {
             Vector2 vel = Vector2.zero;
             bool fire = false;
 
             if (Input.GetMouseButton(0)) {
-                vel = (cam.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized * BulletSpeed;
+                bulletTrajectory = cam.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+                bulletTrajectory.Normalize();
+                vel = bulletTrajectory * BulletSpeed;
                 fire = true;
             }
             else if (Mathf.Abs(rightStickPos.x) >= Deadzone || Mathf.Abs(rightStickPos.y) >= Deadzone) {
-                vel = rightStickPos.normalized * BulletSpeed;
+                bulletTrajectory = rightStickPos.normalized;
+                vel = bulletTrajectory * BulletSpeed;
                 fire = true;
             }
 
             if (fire) {
                 source.PlayOneShot(source.clip);
                 timeSinceShot = 0;
-                var bullet = Instantiate(Bullet);
+                var bullet = Instantiate(PickleSelection[pickleIndex]);
                 bullet.Fire(vel);
                 bullet.transform.position = transform.position;
+                // rb.AddForce(bulletTrajectory * -bullet.Weight * 100);
+                rb.AddForce(bulletTrajectory * -bullet.Weight, ForceMode2D.Impulse);
             }
         }
     }
 
     void FixedUpdate() {
-        if (!dashing && pressedDash && timeSinceDash > DashCooldown) {
+        if (!dashing && pressedDash && timeSinceDash > DashCooldown && LastStickPosition.magnitude >= Deadzone) {
             timeSinceDash = 0;
             dashing = true;
-            dashDirection = rb.velocity.normalized;
+            dashDirection = LastStickPosition.normalized;
         }
-        
+
         if (dashing) {
             timeDashing += Time.deltaTime;
             
