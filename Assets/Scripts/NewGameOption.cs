@@ -51,7 +51,7 @@ public class NewGameOption : MonoBehaviour {
         }
         Vector3 force = SpringWeight * (Anchor.position - transform.position);
         velocity += force * Time.deltaTime;
-        velocity *= 0.99f;
+        velocity *= 0.7f * (1 - Time.deltaTime);
 
         transform.position += velocity * Time.deltaTime;
 
