@@ -16,6 +16,7 @@ public class NewGameOption : MonoBehaviour {
     public float AnimSpeed;
 
     public bool Quit;
+    public bool Clickable;
 
     float xScale;
 
@@ -43,8 +44,10 @@ public class NewGameOption : MonoBehaviour {
         t += AnimSpeed * Time.deltaTime;
 
         xScale += StretchSpeed * Time.deltaTime;
-        xScale = Mathf.Max(1, xScale);
+        xScale = Mathf.Min(1, xScale);
         transform.localScale = new Vector3(xScale, 1, 1);
+        
+        if (!Clickable) return;
         var collider = Physics2D.OverlapBox(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.one * 0.05f, 0);
         if (collider != null && collider == col) {
             Text.fontSize = 9;
