@@ -137,9 +137,9 @@ GameObject:
   - component: {fileID: 757013254}
   - component: {fileID: 757013255}
   - component: {fileID: 757013256}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -223,12 +223,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 7
   Acceleration: 9
-  DashCooldown: 3.5
+  DashCooldown: 2.5
   DashSpeed: 25
   DashAcceleration: 20
   DashLength: 0.12
-  ShootingSpeed: 0.4
+  ShootingSpeed: 0.12201074
   Deadzone: 0.3
+  Bullet: {fileID: 6721119362206783618, guid: 16767ab4806472843a5de2ca9c3c241c, type: 3}
+  BulletSpeed: 20
 --- !u!61 &757013254
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -286,11 +288,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 18ec513fc60c08942bc25544da363de2, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 0b47591c7493b744998d342fbc1db76d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.5
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

@@ -13,6 +13,9 @@ public class PlayerController : MonoBehaviour {
 
     public float Deadzone = 0.3f;
     
+    public Pickle Bullet;
+    public float BulletSpeed;
+
     Rigidbody2D rb;
     Vector2 LastStickPosition;
 
@@ -23,9 +26,14 @@ public class PlayerController : MonoBehaviour {
     bool pressedDash;
     float timeSinceShot;
     AudioSource source;
+    Vector2 shotInDirection;
+    Collider2D col;
+    Camera cam;
 
     void Start() {
         rb = GetComponent<Rigidbody2D>();
+        col = GetComponent<Collider2D>();
+        cam = Camera.main;
         timeSinceDash = DashCooldown;
         timeSinceShot = ShootingSpeed;
         source = GetComponent<AudioSource>();
@@ -40,10 +48,26 @@ public class PlayerController : MonoBehaviour {
 
         timeSinceShot += Time.deltaTime;
         Vector2 rightStickPos = new Vector2(Input.GetAxisRaw("RightStickHorizontal"), Input.GetAxisRaw("RightStickVertical"));
-        if (Input.GetMouseButton(0) || rightStickPos.x >= Deadzone || rightStickPos.y >= Deadzone) {
-            if (timeSinceShot >= ShootingSpeed) {
-                source.Play();
+        
+        if (timeSinceShot >= ShootingSpeed) {
+            Vector2 vel = Vector2.zero;
+            bool fire = false;
+
+            if (Input.GetMouseButton(0)) {
+                vel = (cam.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized * BulletSpeed;
+                fire = true;
+            }
+            else if (Mathf.Abs(rightStickPos.x) >= Deadzone || Mathf.Abs(rightStickPos.y) >= Deadzone) {
+                vel = rightStickPos.normalized * BulletSpeed;
+                fire = true;
+            }
+
+            if (fire) {
+                source.PlayOneShot(source.clip);
                 timeSinceShot = 0;
+                var bullet = Instantiate(Bullet);
+                bullet.Fire(vel);
+                bullet.transform.position = transform.position;
             }
         }
     }
