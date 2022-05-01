@@ -4,6 +4,9 @@ using UnityEngine.SceneManagement;
 public class NewGameOption : MonoBehaviour {
     Rigidbody2D rb;
     
+    public Vector3 InitialPosition;
+
+    public bool TriggerSetInitialPosition;
     public bool Clickable;
 
     public SpriteRenderer SpriteRendererSelected;
@@ -23,6 +26,10 @@ public class NewGameOption : MonoBehaviour {
             else {
                 SpriteRendererSelected.enabled = false;
             }
+        }
+        if (TriggerSetInitialPosition) {
+            TriggerSetInitialPosition = false;
+            transform.position = InitialPosition;
         }
     }
 }
