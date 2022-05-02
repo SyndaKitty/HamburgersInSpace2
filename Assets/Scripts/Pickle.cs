@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Pickle : MonoBehaviour {
@@ -5,11 +6,13 @@ public class Pickle : MonoBehaviour {
     public float Weight;
     public float WaitTime;
     public float AliveTime;
+    public float Speed;
+    public OneShotSound OnImpactSound;
 
     float t;
 
-    public void Fire(Vector2 velocity) {
-        GetComponent<Rigidbody2D>().velocity = velocity;
+    public void Fire(Vector2 velocity, float speedModifier) {
+        GetComponent<Rigidbody2D>().velocity = velocity * Speed * speedModifier;
     }
 
     void Update() {
@@ -23,6 +26,9 @@ public class Pickle : MonoBehaviour {
         var enemy = collision.collider.GetComponent<EnemyController>();
         if (enemy) {
             enemy.Damage(Damage);
+            if (OnImpactSound != null) {
+                Instantiate(OnImpactSound); 
+            }
         }
         Die();
     }

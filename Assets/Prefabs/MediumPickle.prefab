@@ -50,6 +50,8 @@ MonoBehaviour:
   Weight: 1
   WaitTime: 0.244
   AliveTime: 2
+  Speed: 25
+  OnImpactSound: {fileID: 3426595071279391358, guid: c81aad03973bb014e8c1e6aa3eb2f4b1, type: 3}
 --- !u!50 &3065364495938630198
 Rigidbody2D:
   serializedVersion: 4

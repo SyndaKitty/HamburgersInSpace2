@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4814130051780148986}
   - component: {fileID: 1650534147978269219}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Innards
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 4915925817311155801}
   - component: {fileID: 4915925817311155802}
   - component: {fileID: 6544167167929543358}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,9 +132,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 5
   Acceleration: 5
-  bullet: {fileID: 0}
+  Points:
+  - {fileID: 0}
+  - {fileID: 0}
+  PointWaitTime: 1.5
   Radius: 0.2
-  Points: []
+  BurstShots: 3
+  TimeBetweenBursts: 2
+  TimeBetweenShots: 0.2
+  bullet: {fileID: 6721119362206783618, guid: df8bd87939a06224a98ff2affb5196ef, type: 3}
+  TrackPlayerDuringBurst: 0
+  BulletSpeedModifier: 0.7
   StartingHealth: 10
 --- !u!50 &4915925817311155801
 Rigidbody2D:
@@ -212,7 +220,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8750761289748264731}
   - component: {fileID: 6182870384141113507}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Outline
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -10,13 +10,13 @@ public class PlayerController : MonoBehaviour {
     public float DashLength;
 
     public float ShootingSpeed;
+    public float BulletSpeedModifier = 1f;
 
     public float Deadzone = 0.3f;
+    public OneShotSound OneShotFire;
     
     public Pickle[] PickleSelection;
     int pickleIndex;
-
-    public float BulletSpeed;
 
     Rigidbody2D rb;
     Vector2 LastStickPosition;
@@ -65,22 +65,21 @@ public class PlayerController : MonoBehaviour {
             if (Input.GetMouseButton(0)) {
                 bulletTrajectory = cam.ScreenToWorldPoint(Input.mousePosition) - transform.position;
                 bulletTrajectory.Normalize();
-                vel = bulletTrajectory * BulletSpeed;
+                vel = bulletTrajectory;
                 fire = true;
             }
             else if (Mathf.Abs(rightStickPos.x) >= Deadzone || Mathf.Abs(rightStickPos.y) >= Deadzone) {
                 bulletTrajectory = rightStickPos.normalized;
-                vel = bulletTrajectory * BulletSpeed;
+                vel = bulletTrajectory;
                 fire = true;
             }
 
             if (fire) {
-                source.PlayOneShot(source.clip);
+                Instantiate(OneShotFire);
                 timeSinceShot = 0;
                 var bullet = Instantiate(PickleSelection[pickleIndex]);
-                bullet.Fire(vel);
+                bullet.Fire(vel, 1.0f);
                 bullet.transform.position = transform.position;
-                // rb.AddForce(bulletTrajectory * -bullet.Weight * 100);
                 rb.AddForce(bulletTrajectory * -bullet.Weight, ForceMode2D.Impulse);
             }
         }
