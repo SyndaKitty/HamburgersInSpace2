@@ -20,6 +20,10 @@ public class Pickle : MonoBehaviour {
     }
 
     void OnCollisionEnter2D(Collision2D collision) {
+        var enemy = collision.collider.GetComponent<EnemyController>();
+        if (enemy) {
+            enemy.Damage(Damage);
+        }
         Die();
     }
 
