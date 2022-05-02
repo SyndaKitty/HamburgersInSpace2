@@ -94,8 +94,8 @@ public class EnemyController : MonoBehaviour {
         Instantiate(OneShotFire);
 
         Vector2 velocity;
-        if (TrackPlayerDuringBurst && Game.Player != null) {
-            velocity = (Game.Player.transform.position - transform.position).normalized;
+        if (TrackPlayerDuringBurst && Game.Instance.Player != null) {
+            velocity = (Game.Instance.Player.transform.position - transform.position).normalized;
         }
         else {
             velocity = burstDirection;
@@ -109,9 +109,9 @@ public class EnemyController : MonoBehaviour {
     }
 
     (bool b, Vector2 vel) CanSeeTarget() {
-        // Debug.Log(Game.Player);
-        if (Game.Player == null) return (false, Vector2.zero);
-        var directionToPlayer = Game.Player.transform.position - transform.position;
+        // Debug.Log(Game.Instance.Player);
+        if (Game.Instance.Player == null) return (false, Vector2.zero);
+        var directionToPlayer = Game.Instance.Player.transform.position - transform.position;
         int mask = LayerMask.GetMask("Friendly", "Default");
         var hit = Physics2D.Raycast(transform.position, directionToPlayer, directionToPlayer.magnitude, mask);
         if (hit.collider != null && hit.collider.gameObject.CompareTag("Player")) {

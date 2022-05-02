@@ -140,9 +140,10 @@ MonoBehaviour:
   BurstShots: 3
   TimeBetweenBursts: 2
   TimeBetweenShots: 0.2
-  bullet: {fileID: 6721119362206783618, guid: df8bd87939a06224a98ff2affb5196ef, type: 3}
+  Bullet: {fileID: 5156571759092209778, guid: 4010fefc3ae893a4e831f1f92380f7b2, type: 3}
   TrackPlayerDuringBurst: 0
   BulletSpeedModifier: 0.7
+  OneShotFire: {fileID: 3426595071279391358, guid: ff6b5b858d4314c4b88d952bdad8f1f5, type: 3}
   StartingHealth: 10
 --- !u!50 &4915925817311155801
 Rigidbody2D:

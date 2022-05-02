@@ -131,14 +131,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4915925817311155780, guid: b21fc87dffadcf1419a97a3336685f30, type: 3}
-      propertyPath: Bullet
-      value: 
-      objectReference: {fileID: 5156571759092209778, guid: 4010fefc3ae893a4e831f1f92380f7b2, type: 3}
-    - target: {fileID: 4915925817311155780, guid: b21fc87dffadcf1419a97a3336685f30, type: 3}
-      propertyPath: OneShotFire
-      value: 
-      objectReference: {fileID: 3426595071279391358, guid: ff6b5b858d4314c4b88d952bdad8f1f5, type: 3}
-    - target: {fileID: 4915925817311155780, guid: b21fc87dffadcf1419a97a3336685f30, type: 3}
       propertyPath: Points.Array.data[0]
       value: 
       objectReference: {fileID: 541619710}
@@ -368,6 +360,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 479350e7df1820f488948a2d52ea10ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  VolumeModifier: 1
+  Player: {fileID: 0}
+  ActivateCheckPointSound: {fileID: 0}
 --- !u!4 &1780674521
 Transform:
   m_ObjectHideFlags: 0
@@ -393,25 +388,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 1573693482439468224, guid: c30f4b70693a4a245898b6c54e344fdb, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1573693482439468224, guid: c30f4b70693a4a245898b6c54e344fdb, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 1573693482439468230, guid: c30f4b70693a4a245898b6c54e344fdb, type: 3}
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1573693482439468230, guid: c30f4b70693a4a245898b6c54e344fdb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 3.15
       objectReference: {fileID: 0}
     - target: {fileID: 1573693482439468230, guid: c30f4b70693a4a245898b6c54e344fdb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.09
       objectReference: {fileID: 0}
     - target: {fileID: 1573693482439468230, guid: c30f4b70693a4a245898b6c54e344fdb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -445,10 +432,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1573693482439468231, guid: c30f4b70693a4a245898b6c54e344fdb, type: 3}
-      propertyPath: OneShotFire
-      value: 
-      objectReference: {fileID: 3426595071279391358, guid: ff6b5b858d4314c4b88d952bdad8f1f5, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c30f4b70693a4a245898b6c54e344fdb, type: 3}
 --- !u!1 &5000786839362723224

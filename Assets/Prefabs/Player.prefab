@@ -105,11 +105,12 @@ MonoBehaviour:
   DashAcceleration: 20
   DashLength: 0.12
   ShootingSpeed: 0.2440214
+  BulletSpeedModifier: 1
   Deadzone: 0.3
+  OneShotFire: {fileID: 3426595071279391358, guid: ff6b5b858d4314c4b88d952bdad8f1f5, type: 3}
   PickleSelection:
   - {fileID: 6721119362206783618, guid: 16767ab4806472843a5de2ca9c3c241c, type: 3}
   - {fileID: 6721119362206783618, guid: df8bd87939a06224a98ff2affb5196ef, type: 3}
-  BulletSpeed: 25
 --- !u!61 &1573693482439468228
 BoxCollider2D:
   m_ObjectHideFlags: 0

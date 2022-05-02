@@ -1,0 +1,5 @@
+Hamburgers in Space 2 brainstorming
+
+What is the scope of the environment?
+What happens when the player dies?
+Is there a checkpoint system, or a lives system?

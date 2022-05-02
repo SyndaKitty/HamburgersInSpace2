@@ -7,7 +7,7 @@ public class OneShotSound : MonoBehaviour {
     void Start() {
         var source = GetComponent<AudioSource>();
 
-        source.volume *= Game.VolumeModifier;        
+        source.volume *= Game.Instance.VolumeModifier;        
         if (clips != null && clips.Length > 0) {
             source.clip = clips[Random.Range(0, clips.Length)];
         }
