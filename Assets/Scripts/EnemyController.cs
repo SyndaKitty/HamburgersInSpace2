@@ -33,10 +33,13 @@ public class EnemyController : MonoBehaviour {
     float timeSinceShot;
     Vector2 burstDirection;
 
+    Transform healthBarInner;
+
     void Start() {
         rb = GetComponent<Rigidbody2D>();
         health = StartingHealth;
         animator = GetComponent<Animator>();
+        healthBarInner = transform.Find("HealthbarHolder/HealthbarInner");
     }
 
     void Update() {
@@ -130,6 +133,11 @@ public class EnemyController : MonoBehaviour {
 
     public void Damage(float amount) {
         health -= amount;
+
+        var scale = healthBarInner.localScale; 
+        scale.x = Mathf.Max(0, health) / StartingHealth;
+        healthBarInner.localScale = scale;
+
         animator.SetTrigger("hit");
         if (health <= 0) {
             Die();

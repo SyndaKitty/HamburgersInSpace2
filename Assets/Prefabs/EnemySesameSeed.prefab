@@ -59,5 +59,9 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 6721119362206783618, guid: df8bd87939a06224a98ff2affb5196ef, type: 3}
+      propertyPath: Damage
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df8bd87939a06224a98ff2affb5196ef, type: 3}

@@ -30,6 +30,15 @@ public class Pickle : MonoBehaviour {
                 Instantiate(OnImpactSound); 
             }
         }
+
+        // The layers should prevent this if this isn't supposed to hit the player
+        var player = collision.collider.GetComponent<PlayerController>();
+        if (player) {
+            player.Damage(Damage);
+            if (OnImpactSound != null) {
+                Instantiate(OnImpactSound); 
+            }
+        }
         Die();
     }
 

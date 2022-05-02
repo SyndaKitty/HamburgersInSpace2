@@ -14,12 +14,13 @@ public class PlayerController : MonoBehaviour {
 
     public float Deadzone = 0.3f;
     public OneShotSound OneShotFire;
-    
+    public float MaxHealth;
+
     public Pickle[] PickleSelection;
     int pickleIndex;
 
-    Rigidbody2D rb;
-    Vector2 LastStickPosition;
+    public Rigidbody2D rb;
+    public Vector2 LastStickPosition;
 
     bool dashing;
     Vector2 dashDirection;
@@ -30,16 +31,38 @@ public class PlayerController : MonoBehaviour {
     AudioSource source;
     Collider2D col;
     Camera cam;
+    SpriteRenderer sr;
 
     Vector2 bulletTrajectory;
+
+    float health;
+    Transform healthBarInner;
+    SpriteRenderer healthBarHolderSr;
+    SpriteRenderer healthBarInnerSr;
 
     void Start() {
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
+        sr = GetComponent<SpriteRenderer>();
         cam = Camera.main;
         timeSinceDash = DashCooldown;
         timeSinceShot = ShootingSpeed;
         source = GetComponent<AudioSource>();
+        healthBarInner = transform.Find("HealthbarHolder/HealthbarInner");
+        SetHealth(MaxHealth);
+        healthBarInnerSr = transform.Find("HealthbarHolder/HealthbarInner").gameObject.GetComponent<SpriteRenderer>();
+        healthBarHolderSr = transform.Find("HealthbarHolder").gameObject.GetComponent<SpriteRenderer>();
+    }
+
+    void SetHealth(float amt) {
+        health = amt;
+        if (amt <= 0) {
+            Die();
+        }
+
+        var scale = healthBarInner.localScale;
+        scale.x = health / MaxHealth;
+        healthBarInner.localScale = scale;
     }
 
     void Update() {
@@ -114,5 +137,27 @@ public class PlayerController : MonoBehaviour {
         }
 
         pressedDash = false;
+    }
+
+    public void Damage(float damage) {
+        SetHealth(health - damage);
+    }
+
+    public void Die() {
+        sr.enabled = false;
+        healthBarInnerSr.enabled = false;
+        healthBarHolderSr.enabled = false;
+        col.enabled = false;
+        enabled = false;
+        Game.Instance.PlayerDied();
+    }
+
+    public void Respawn() {
+        sr.enabled = true;
+        healthBarInnerSr.enabled = true;
+        healthBarHolderSr.enabled = true;
+        col.enabled = true;
+        enabled = true;
+        SetHealth(MaxHealth);
     }
 }

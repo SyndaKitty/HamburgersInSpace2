@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Game : MonoBehaviour {
@@ -6,6 +7,7 @@ public class Game : MonoBehaviour {
     public float VolumeModifier = 1;
     public PlayerController Player;
     public OneShotSound ActivateCheckPointSound;
+    public float SpawnWaitTime = 2f;
 
     PlayerCheckPoint ActiveCheckpoint;
 
@@ -34,5 +36,18 @@ public class Game : MonoBehaviour {
         if (ActivateCheckPointSound) {
             Instantiate(ActivateCheckPointSound);
         }
+    }
+
+    public void PlayerDied() {
+        StartCoroutine(SpawnPlayerAfterWait());
+    }
+
+    IEnumerator SpawnPlayerAfterWait() {
+        yield return new WaitForSeconds(SpawnWaitTime);
+        if (ActiveCheckpoint == null) {
+            ActiveCheckpoint = FindObjectOfType<PlayerCheckPoint>();
+        }
+        Player.transform.position = ActiveCheckpoint.transform.position;
+        Player.Respawn();
     }
 }
