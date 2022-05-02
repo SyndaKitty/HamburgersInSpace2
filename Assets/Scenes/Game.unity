@@ -131,6 +131,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4915925817311155780, guid: b21fc87dffadcf1419a97a3336685f30, type: 3}
+      propertyPath: StartingHealth
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 4915925817311155780, guid: b21fc87dffadcf1419a97a3336685f30, type: 3}
+      propertyPath: Points.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4915925817311155780, guid: b21fc87dffadcf1419a97a3336685f30, type: 3}
       propertyPath: Points.Array.data[0]
       value: 
       objectReference: {fileID: 541619710}
@@ -305,7 +313,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -437,7 +445,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1573693481719300034
 PrefabInstance:
@@ -855,7 +863,7 @@ Transform:
   - {fileID: 5000786841014527300}
   - {fileID: 5000786839908879813}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5000786841014527299
 GameObject:

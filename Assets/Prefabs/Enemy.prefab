@@ -68,8 +68,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1013116633
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9db39e39fb05ecc4881f3176b76b6290, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -151,8 +151,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1013116633
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 64ddd2361317f0d43b4959a60eba38ba, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -216,16 +216,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 5
   Acceleration: 5
-  Points:
-  - {fileID: 0}
-  - {fileID: 0}
+  Points: []
   PointWaitTime: 1.5
   Radius: 0.2
   BurstShots: 3
   TimeBetweenBursts: 2
   TimeBetweenShots: 0.2
   Bullet: {fileID: 5156571759092209778, guid: 4010fefc3ae893a4e831f1f92380f7b2, type: 3}
-  TrackPlayerDuringBurst: 0
+  TrackPlayerDuringBurst: 1
   BulletSpeedModifier: 0.7
   OneShotFire: {fileID: 3426595071279391358, guid: ff6b5b858d4314c4b88d952bdad8f1f5, type: 3}
   StartingHealth: 10
@@ -363,8 +361,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1013116633
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 11c5e0f481491aa4dae5275b3194c8e7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -445,8 +443,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1013116633
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 11ba109077264514baa36725d30cb1ab, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

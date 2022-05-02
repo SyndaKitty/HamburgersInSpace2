@@ -16,7 +16,7 @@ TagManager:
   - Enemy
   - EnemyBullet
   - Checkpoint
-  - 
+  - Walls
   - 
   - 
   - 
@@ -40,4 +40,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Foreground
+    uniqueID: 1013116633
     locked: 0
