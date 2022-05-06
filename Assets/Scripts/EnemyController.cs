@@ -112,7 +112,6 @@ public class EnemyController : MonoBehaviour {
     }
 
     (bool b, Vector2 vel) CanSeeTarget() {
-        // Debug.Log(Game.Instance.Player);
         if (Game.Instance.Player == null) return (false, Vector2.zero);
         var directionToPlayer = Game.Instance.Player.transform.position - transform.position;
         int mask = LayerMask.GetMask("Friendly", "Default");
