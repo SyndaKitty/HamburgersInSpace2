@@ -144,6 +144,8 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void Die() {
+        dashing = false;
+        rb.velocity = Vector2.zero;
         sr.enabled = false;
         healthBarInnerSr.enabled = false;
         healthBarHolderSr.enabled = false;
@@ -153,11 +155,16 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void Respawn() {
+        rb.velocity = Vector2.zero;
         sr.enabled = true;
         healthBarInnerSr.enabled = true;
         healthBarHolderSr.enabled = true;
         col.enabled = true;
         enabled = true;
         SetHealth(MaxHealth);
+    }
+
+    public void Push(Vector2 amount) {
+        rb.AddForce(amount, ForceMode2D.Impulse);
     }
 }
