@@ -34,11 +34,13 @@ public class EnemyController : MonoBehaviour {
     Vector2 burstDirection;
 
     Transform healthBarInner;
+    ExplosionCreator explosion;
 
     void Start() {
         rb = GetComponent<Rigidbody2D>();
         health = StartingHealth;
         animator = GetComponent<Animator>();
+        explosion = GetComponent<ExplosionCreator>();
         healthBarInner = transform.Find("HealthbarHolder/HealthbarInner");
     }
 
@@ -144,6 +146,7 @@ public class EnemyController : MonoBehaviour {
     }
 
     public void Die() {
+        explosion.Create();
         Destroy(gameObject);
     }
 }

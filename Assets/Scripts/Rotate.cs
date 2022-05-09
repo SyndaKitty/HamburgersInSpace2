@@ -1,15 +1,9 @@
 using UnityEngine;
 
 public class Rotate : MonoBehaviour {
-    public float Torque;
-
-    Rigidbody2D rb;
-
-    void Start() {
-        rb = GetComponent<Rigidbody2D>();
-    }
+    public float Speed;
 
     void Update() {
-        rb.AddTorque(Torque * Time.deltaTime);
+        transform.rotation *= Quaternion.Euler(0, 0, Speed * Time.deltaTime);
     }
 }

@@ -40,10 +40,13 @@ public class PlayerController : MonoBehaviour {
     SpriteRenderer healthBarHolderSr;
     SpriteRenderer healthBarInnerSr;
 
+    ExplosionCreator explosion;
+
     void Start() {
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
         sr = GetComponent<SpriteRenderer>();
+        explosion = GetComponent<ExplosionCreator>();
         cam = Camera.main;
         timeSinceDash = DashCooldown;
         timeSinceShot = ShootingSpeed;
@@ -151,6 +154,7 @@ public class PlayerController : MonoBehaviour {
         healthBarHolderSr.enabled = false;
         col.enabled = false;
         enabled = false;
+        explosion.Create();
         Game.Instance.PlayerDied();
     }
 

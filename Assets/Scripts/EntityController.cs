@@ -24,6 +24,7 @@ public class EntityController : MonoBehaviour {
     Vector2 spinStart;
     Vector2 anchor;
     Rigidbody2D rb;
+    ExplosionCreator explosion;
     float health;
 
     Animator rightEye;
@@ -51,6 +52,7 @@ public class EntityController : MonoBehaviour {
         leftEye = transform.Find("LeftEye").GetComponent<Animator>();
         upEye = transform.Find("UpEye").GetComponent<Animator>();
         downEye = transform.Find("DownEye").GetComponent<Animator>();
+        explosion = GetComponent<ExplosionCreator>();
 
         health = StartingHealth;
     }
@@ -133,6 +135,7 @@ public class EntityController : MonoBehaviour {
 
     IEnumerator Phase2() {
         Instantiate(Break);
+        leftEye.GetComponent<ExplosionCreator>().Create();
         Destroy(leftEye.gameObject);
         left = false;
         wait = true;
@@ -145,6 +148,7 @@ public class EntityController : MonoBehaviour {
 
     IEnumerator Phase3() {
         Instantiate(Break);
+        rightEye.GetComponent<ExplosionCreator>().Create();
         Destroy(rightEye.gameObject);
         right = false;
         wait = true;
@@ -157,6 +161,7 @@ public class EntityController : MonoBehaviour {
 
     IEnumerator Phase4() {
         Instantiate(Break);
+        upEye.GetComponent<ExplosionCreator>().Create();
         Destroy(upEye.gameObject);
         up = false;
         wait = true;
@@ -168,6 +173,8 @@ public class EntityController : MonoBehaviour {
     }
 
     void Die() {
+        downEye.GetComponent<ExplosionCreator>().Create();
+        explosion.Create();
         Destroy(gameObject);
     }
 
