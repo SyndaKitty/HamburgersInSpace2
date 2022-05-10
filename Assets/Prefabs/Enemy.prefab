@@ -228,11 +228,11 @@ MonoBehaviour:
   BurstShots: 3
   TimeBetweenBursts: 2
   TimeBetweenShots: 0.2
-  Bullet: {fileID: 5156571759092209778, guid: 4010fefc3ae893a4e831f1f92380f7b2, type: 3}
+  Bullet: {fileID: 5406454464022644201, guid: 1581c1c3946383b4ca9de4245ece1533, type: 3}
   TrackPlayerDuringBurst: 1
   BulletSpeedModifier: 0.7
   OneShotFire: {fileID: 3426595071279391358, guid: ff6b5b858d4314c4b88d952bdad8f1f5, type: 3}
-  StartingHealth: 10
+  StartingHealth: 200
 --- !u!50 &4915925817311155801
 Rigidbody2D:
   serializedVersion: 4
@@ -317,6 +317,10 @@ MonoBehaviour:
   tex: {fileID: 2800000, guid: 22ed8bfbe2d542244bcd3615b4c0ea30, type: 3}
   ExplosionForce: 2.5
   RandomVariationAmount: 0.5
+  TorqueAmount: 1
+  Scale: {x: 0.5, y: 0.5, z: 0.5}
+  go: 0
+  ExplosionSound: {fileID: 2463045723129951553, guid: 2bfe75a6863064e4098528b82d0dfa90, type: 3}
 --- !u!1 &7215235816351752289
 GameObject:
   m_ObjectHideFlags: 0

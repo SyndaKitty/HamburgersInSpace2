@@ -9,7 +9,7 @@ public class Game : MonoBehaviour {
     public OneShotSound ActivateCheckPointSound;
     public float SpawnWaitTime = 2f;
 
-    PlayerCheckPoint ActiveCheckpoint;
+    public PlayerCheckPoint ActiveCheckpoint;
 
     Music music;
     void Awake() {

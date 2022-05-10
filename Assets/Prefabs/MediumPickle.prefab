@@ -30,6 +30,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -50,7 +51,9 @@ MonoBehaviour:
   Weight: 1
   WaitTime: 0.244
   AliveTime: 2
-  Speed: 25
+  Speed: 15
+  InaccuracyDeviation: 1
+  InnaccuracyDegrees: 0.0625
   OnImpactSound: {fileID: 3426595071279391358, guid: c81aad03973bb014e8c1e6aa3eb2f4b1, type: 3}
 --- !u!50 &3065364495938630198
 Rigidbody2D:
@@ -84,6 +87,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1

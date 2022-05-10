@@ -56,19 +56,22 @@ public class EnemyController : MonoBehaviour {
         if (!waiting) {
             if (Points == null || Points.Length == 0) {
                 targetDirection = Vector2.zero;
-                return;
+            }
+            else {
+                targetDirection = Points[targetPoint].position - transform.position;
+                if (targetDirection.magnitude < Radius) {
+                    waiting = true;
+                    targetPoint++;
+                    targetPoint %= Points.Length;
+                }
             }
 
-            targetDirection = Points[targetPoint].position - transform.position;
-            if (targetDirection.magnitude < Radius) {
-                waiting = true;
-                targetPoint++;
-                targetPoint %= Points.Length;
-            }
         }
         else {
             targetDirection = Vector2.zero;
         }
+
+        Debug.Log("Bursting: " + bursting);
 
         if (bursting) {
             if (burstShotsTaken >= BurstShots) {
@@ -86,6 +89,7 @@ public class EnemyController : MonoBehaviour {
         else {
             timeSinceBurst += Time.deltaTime;
             var canSee = CanSeeTarget();
+            Debug.Log("Can see player: " + canSee.b);
             if (timeSinceBurst >= TimeBetweenBursts && canSee.b) {
                 bursting = true;
                 burstDirection = canSee.vel;

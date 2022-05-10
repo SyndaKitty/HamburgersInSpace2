@@ -1,49 +1,34 @@
 using UnityEngine;
 
 public class CameraController : MonoBehaviour {
-    public float Speed;
+    public float SmoothTime;
+    public float MaxSpeed;
+    [Range(0f, 1f)]
+    public float LeanAmount;
 
-    public float OffsetSpeed;
-    public float OffsetAcceleration;
-    public float OffsetAmount = 1.5f;
-    public RenderTexture SecondaryTexture;
+    Vector3 velocity;
+    Camera cam;
 
-    Vector2 velocity;
-    Vector3 position;
-    Vector3 offset;
-    Vector3 targetOffset;
-
-    bool inBounds;
-
-    public void InBounds() {
-        inBounds = true;
+    void Start() {
+        cam = GetComponent<Camera>();
     }
 
-    void Update() {
-        if (inBounds) {
-            return;
-        }
+    void LateUpdate() {
+        Vector3 target;
         if (Game.Instance.Player) {
-            var newpos = Vector3.MoveTowards(position, Game.Instance.Player.transform.position, Speed * Time.deltaTime);
-            newpos.z = transform.position.z;
-            position = newpos;
-
-            
-            var vel = Game.Instance.Player.LastStickPosition;
-            if (vel.magnitude > 0.1f) {
-                targetOffset = vel.normalized * OffsetAmount;
-            }
-
-            var diff = ((Vector3)targetOffset - offset) * OffsetSpeed;
-            offset += diff * OffsetAcceleration * Time.deltaTime;
-
-            transform.position = position + offset;
+            target = Game.Instance.Player.transform.position;
         }
-        inBounds = false;
-        Graphics.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), SecondaryTexture);
-    }
+        else if (Game.Instance.ActiveCheckpoint != null) {
+            target = Game.Instance.ActiveCheckpoint.transform.position;
+        }
+        else {
+            target = Vector3.zero;
+        }
 
-    void OnPostRender() {
-        
+        target.z = transform.position.z;
+        target.x *= LeanAmount;
+        target.y *= LeanAmount;
+
+        transform.position = Vector3.SmoothDamp(transform.position, target, ref velocity, SmoothTime, MaxSpeed, Time.deltaTime);
     }
 }

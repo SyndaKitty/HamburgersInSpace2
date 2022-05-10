@@ -16,6 +16,7 @@ public class EntityController : MonoBehaviour {
 
     public OneShotSound Growl;
     public OneShotSound Break;
+    public OneShotSound MeleePlayer;
 
     float t;
     bool spinning;
@@ -135,11 +136,12 @@ public class EntityController : MonoBehaviour {
 
     IEnumerator Phase2() {
         Instantiate(Break);
-        leftEye.GetComponent<ExplosionCreator>().Create();
-        Destroy(leftEye.gameObject);
         left = false;
         wait = true;
         StopSpinning();
+        yield return null;
+        leftEye.GetComponent<ExplosionCreator>().Create();
+        Destroy(leftEye.gameObject);
         yield return new WaitForSeconds(1f);
         Instantiate(Growl);
         yield return new WaitForSeconds(2f);
@@ -148,11 +150,12 @@ public class EntityController : MonoBehaviour {
 
     IEnumerator Phase3() {
         Instantiate(Break);
-        rightEye.GetComponent<ExplosionCreator>().Create();
-        Destroy(rightEye.gameObject);
         right = false;
         wait = true;
         StopSpinning();
+        rightEye.GetComponent<ExplosionCreator>().Create();
+        Destroy(rightEye.gameObject);
+        yield return null;
         yield return new WaitForSeconds(1f);
         Instantiate(Growl);
         yield return new WaitForSeconds(2f);
@@ -161,11 +164,12 @@ public class EntityController : MonoBehaviour {
 
     IEnumerator Phase4() {
         Instantiate(Break);
-        upEye.GetComponent<ExplosionCreator>().Create();
-        Destroy(upEye.gameObject);
         up = false;
         wait = true;
         StopSpinning();
+        yield return null;
+        upEye.GetComponent<ExplosionCreator>().Create();
+        Destroy(upEye.gameObject);
         yield return new WaitForSeconds(1f);
         Instantiate(Growl);
         yield return new WaitForSeconds(2f);
@@ -184,6 +188,7 @@ public class EntityController : MonoBehaviour {
             var player = collision.collider.GetComponent<PlayerController>();
             player.Damage(SpinDamage);
             player.Push((player.transform.position - gameObject.transform.position).normalized * SpinKnockback);
+            Instantiate(MeleePlayer);
         }
     }
 }
