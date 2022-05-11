@@ -13,6 +13,7 @@ public class EnemyController : MonoBehaviour {
     public float TimeBetweenShots;
     public Pickle Bullet;
     public bool TrackPlayerDuringBurst;
+    public bool ShootAheadOfPlayer;
     public float BulletSpeedModifier = 1f;
 
     public OneShotSound OneShotFire;
@@ -71,8 +72,6 @@ public class EnemyController : MonoBehaviour {
             targetDirection = Vector2.zero;
         }
 
-        Debug.Log("Bursting: " + bursting);
-
         if (bursting) {
             if (burstShotsTaken >= BurstShots) {
                 bursting = false;
@@ -88,11 +87,10 @@ public class EnemyController : MonoBehaviour {
         }
         else {
             timeSinceBurst += Time.deltaTime;
-            var canSee = CanSeeTarget();
-            Debug.Log("Can see player: " + canSee.b);
-            if (timeSinceBurst >= TimeBetweenBursts && canSee.b) {
+            var aimInfo = Aim();
+            if (timeSinceBurst >= TimeBetweenBursts && aimInfo.canSee) {
                 bursting = true;
-                burstDirection = canSee.vel;
+                burstDirection = (aimInfo.targetPos - transform.position).normalized;
             }
         }
     }
@@ -102,30 +100,40 @@ public class EnemyController : MonoBehaviour {
         
         Instantiate(OneShotFire);
 
-        Vector2 velocity;
+        Vector2 bulletDir;
         if (TrackPlayerDuringBurst && Game.Instance.Player != null) {
-            velocity = (Game.Instance.Player.transform.position - transform.position).normalized;
+            var aimInfo = Aim();
+            bulletDir = (aimInfo.targetPos - transform.position).normalized;
         }
         else {
-            velocity = burstDirection;
+            bulletDir = burstDirection;
         }
         var bullet = Instantiate(Bullet);
-        bullet.Fire(velocity, BulletSpeedModifier);
+        bullet.Fire(bulletDir, BulletSpeedModifier);
         bullet.transform.position = transform.position;
-        rb.AddForce(velocity * -bullet.Weight, ForceMode2D.Impulse);
+        rb.AddForce(bulletDir * -bullet.Weight, ForceMode2D.Impulse);
         timeSinceShot = 0;
         burstShotsTaken++;
     }
 
-    (bool b, Vector2 vel) CanSeeTarget() {
-        if (Game.Instance.Player == null) return (false, Vector2.zero);
+    (bool canSee, Vector3 targetPos) Aim() {
+        var def = (false, Vector2.zero);
+        if (Game.Instance.Player == null) return def;
         var directionToPlayer = Game.Instance.Player.transform.position - transform.position;
         int mask = LayerMask.GetMask("Friendly", "Default");
         var hit = Physics2D.Raycast(transform.position, directionToPlayer, directionToPlayer.magnitude, mask);
-        if (hit.collider != null && hit.collider.gameObject.CompareTag("Player")) {
-            return (true, (hit.collider.gameObject.transform.position - transform.position).normalized);
+        
+        bool canSee = hit.collider != null && hit.collider.gameObject.CompareTag("Player");
+        
+        Vector2 playerVelocity = ShootAheadOfPlayer ? Game.Instance.Player.GetVelocity() : Vector2.zero;
+        var playerPos = Game.Instance.Player.transform.position;
+        var diff = playerPos - transform.position;
+        
+        if (ShootAheadOfPlayer) {
+            playerPos += (Vector3)Game.Instance.Player.GetVelocity() * diff.magnitude / Bullet.Speed;
         }
-        return (false, Vector2.zero);
+            
+        return (canSee, playerPos);
     }
 
     void FixedUpdate() {

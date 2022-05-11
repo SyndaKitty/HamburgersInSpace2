@@ -22,6 +22,9 @@ public class PlayerController : MonoBehaviour {
     public Rigidbody2D rb;
     public Vector2 LastStickPosition;
 
+    public float BunDistance;
+
+    bool blocking;
     bool dashing;
     Vector2 dashDirection;
     float timeSinceDash;
@@ -40,13 +43,20 @@ public class PlayerController : MonoBehaviour {
     SpriteRenderer healthBarHolderSr;
     SpriteRenderer healthBarInnerSr;
 
+    Transform bun;
+
     ExplosionCreator explosion;
+    Animator animator;
+
+    const string HitTrigger = "Hit";
+    const string BlockBool = "Blocking";
 
     void Start() {
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
         sr = GetComponent<SpriteRenderer>();
         explosion = GetComponent<ExplosionCreator>();
+        animator = GetComponent<Animator>();
         cam = Camera.main;
         timeSinceDash = DashCooldown;
         timeSinceShot = ShootingSpeed;
@@ -55,6 +65,7 @@ public class PlayerController : MonoBehaviour {
         SetHealth(MaxHealth);
         healthBarInnerSr = transform.Find("HealthbarHolder/HealthbarInner").gameObject.GetComponent<SpriteRenderer>();
         healthBarHolderSr = transform.Find("HealthbarHolder").gameObject.GetComponent<SpriteRenderer>();
+        bun = transform.Find("Bun");
     }
 
     void SetHealth(float amt) {
@@ -79,6 +90,18 @@ public class PlayerController : MonoBehaviour {
 
         if (Input.GetButtonDown("Dash")) {
             pressedDash = true;
+        }
+
+        blocking = Input.GetMouseButton(1);
+        animator.SetBool(BlockBool, blocking);
+        if (blocking) {
+            var mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+            mousePos.z = transform.position.z;
+            var diff = (mousePos - transform.position).normalized;
+            float deg = Mathf.Atan2(diff.y, diff.x);
+            bun.position = transform.position + diff * BunDistance;
+            Debug.Log(transform.position + " " + diff + " " + BunDistance);
+            bun.rotation = Quaternion.Euler(0, 0, Mathf.Rad2Deg * deg - 90);
         }
 
         timeSinceShot += Time.deltaTime;
@@ -143,6 +166,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void Damage(float damage) {
+        animator.SetTrigger(HitTrigger);
         SetHealth(health - damage);
     }
 
@@ -154,9 +178,12 @@ public class PlayerController : MonoBehaviour {
         healthBarHolderSr.enabled = false;
         col.enabled = false;
         enabled = false;
+        animator.SetBool(BlockBool, false);
         explosion.Create();
         Game.Instance.PlayerDied();
     }
+
+    public Vector2 GetVelocity() => rb.velocity;
 
     public void Respawn() {
         rb.velocity = Vector2.zero;

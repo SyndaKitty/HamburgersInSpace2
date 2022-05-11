@@ -430,6 +430,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4915925817311155780, guid: b21fc87dffadcf1419a97a3336685f30, type: 3}
+      propertyPath: ShootAheadOfPlayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4915925817311155782, guid: b21fc87dffadcf1419a97a3336685f30, type: 3}
       propertyPath: m_Name
       value: Enemy (3)
@@ -853,6 +857,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4915925817311155780, guid: b21fc87dffadcf1419a97a3336685f30, type: 3}
+      propertyPath: ShootAheadOfPlayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4915925817311155782, guid: b21fc87dffadcf1419a97a3336685f30, type: 3}
       propertyPath: m_Name
       value: Enemy (2)
@@ -1033,6 +1041,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4915925817311155780, guid: b21fc87dffadcf1419a97a3336685f30, type: 3}
+      propertyPath: ShootAheadOfPlayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4915925817311155782, guid: b21fc87dffadcf1419a97a3336685f30, type: 3}
       propertyPath: m_Name
       value: Enemy (1)
@@ -1845,6 +1857,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4915925817311155780, guid: b21fc87dffadcf1419a97a3336685f30, type: 3}
+      propertyPath: ShootAheadOfPlayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4915925817311155782, guid: b21fc87dffadcf1419a97a3336685f30, type: 3}
       propertyPath: m_Name
       value: Enemy
@@ -2847,6 +2863,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4915925817311155780, guid: b21fc87dffadcf1419a97a3336685f30, type: 3}
+      propertyPath: ShootAheadOfPlayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4915925817311155782, guid: b21fc87dffadcf1419a97a3336685f30, type: 3}
       propertyPath: m_Name
       value: Enemy (4)
@@ -4312,32 +4332,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ccc0f0ecfda1a2745bc4314fa7817919, type: 3}
---- !u!1 &1986379784 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1573693482439468224, guid: c30f4b70693a4a245898b6c54e344fdb, type: 3}
-  m_PrefabInstance: {fileID: 1573693481719300034}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1986379791
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1986379784}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8cdc9a5d16ba5546b4709298cfd98c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mesh: {fileID: -5495902117074765545, guid: a6de703b0fedfc1409d95610dff19c09, type: 3}
-  ParticlePrefab: {fileID: 6257572529544377684, guid: 02a5fe4defe21964ba75d0a1eeb3bb96, type: 3}
-  tex: {fileID: 2800000, guid: be1a51dd32b0a9040b41ab4cb004a159, type: 3}
-  ExplosionForce: 1
-  RandomVariationAmount: 0.5
-  TorqueAmount: 1
-  Scale: {x: 1, y: 1, z: 1}
-  go: 0
-  ExplosionSound: {fileID: 2463045723129951553, guid: 2bfe75a6863064e4098528b82d0dfa90, type: 3}
 --- !u!1001 &2007582201
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4566,12 +4560,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 1573693482439468224, guid: c30f4b70693a4a245898b6c54e344fdb, type: 3}
-      propertyPath: m_IsActive
+    - target: {fileID: 1573693482439468225, guid: c30f4b70693a4a245898b6c54e344fdb, type: 3}
+      propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1573693482439468229, guid: c30f4b70693a4a245898b6c54e344fdb, type: 3}
-      propertyPath: m_Interpolate
+    - target: {fileID: 1573693482439468225, guid: c30f4b70693a4a245898b6c54e344fdb, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1573693482439468225, guid: c30f4b70693a4a245898b6c54e344fdb, type: 3}
+      propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1573693482439468230, guid: c30f4b70693a4a245898b6c54e344fdb, type: 3}
@@ -4580,11 +4578,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1573693482439468230, guid: c30f4b70693a4a245898b6c54e344fdb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.28
+      value: 2.39
       objectReference: {fileID: 0}
     - target: {fileID: 1573693482439468230, guid: c30f4b70693a4a245898b6c54e344fdb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -14.01
+      value: -12.881
       objectReference: {fileID: 0}
     - target: {fileID: 1573693482439468230, guid: c30f4b70693a4a245898b6c54e344fdb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4619,25 +4617,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1573693482439468231, guid: c30f4b70693a4a245898b6c54e344fdb, type: 3}
-      propertyPath: DashSpeed
-      value: 40
+      propertyPath: BunDistance
+      value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 1573693482439468231, guid: c30f4b70693a4a245898b6c54e344fdb, type: 3}
-      propertyPath: DashLength
-      value: 0.15
+    - target: {fileID: 6081609100007750481, guid: c30f4b70693a4a245898b6c54e344fdb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1573693482439468231, guid: c30f4b70693a4a245898b6c54e344fdb, type: 3}
-      propertyPath: DashAcceleration
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 1573693482439468231, guid: c30f4b70693a4a245898b6c54e344fdb, type: 3}
-      propertyPath: PickleSelection.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1573693482439468231, guid: c30f4b70693a4a245898b6c54e344fdb, type: 3}
-      propertyPath: PickleSelection.Array.data[2]
-      value: 
-      objectReference: {fileID: 4952635469273327990, guid: 1272e27576cf2c54796dda17c6d18155, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c30f4b70693a4a245898b6c54e344fdb, type: 3}
 --- !u!1001 &5655613015921220428

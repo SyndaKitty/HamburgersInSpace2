@@ -5,7 +5,6 @@ public class Pickle : MonoBehaviour {
     public float Damage;
     public float Weight;
     public float WaitTime;
-    public float AliveTime;
     public float Speed;
     public float InaccuracyDeviation;
     public float InnaccuracyDegrees;
@@ -24,9 +23,6 @@ public class Pickle : MonoBehaviour {
 
     void Update() {
         t += Time.deltaTime;
-        if (t >= AliveTime) {
-            Die();
-        }
     }
 
     void OnCollisionEnter2D(Collision2D collision) {
