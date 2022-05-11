@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour {
         timeSinceShot += Time.deltaTime;
         Vector2 rightStickPos = new Vector2(Input.GetAxisRaw("RightStickHorizontal"), Input.GetAxisRaw("RightStickVertical"));
         
-        if (timeSinceShot >= PickleSelection[pickleIndex].WaitTime) {
+        if (!blocking && timeSinceShot >= PickleSelection[pickleIndex].WaitTime) {
             Vector2 vel = Vector2.zero;
             bool fire = false;
 

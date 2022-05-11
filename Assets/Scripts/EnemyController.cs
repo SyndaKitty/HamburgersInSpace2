@@ -120,8 +120,8 @@ public class EnemyController : MonoBehaviour {
         var def = (false, Vector2.zero);
         if (Game.Instance.Player == null) return def;
         var directionToPlayer = Game.Instance.Player.transform.position - transform.position;
-        int mask = LayerMask.GetMask("Friendly", "Default");
-        var hit = Physics2D.Raycast(transform.position, directionToPlayer, directionToPlayer.magnitude, mask);
+            int mask = LayerMask.GetMask("Friendly", "Default");
+            var hit = Physics2D.Raycast(transform.position, directionToPlayer, directionToPlayer.magnitude, mask);
         
         bool canSee = hit.collider != null && hit.collider.gameObject.CompareTag("Player");
         
