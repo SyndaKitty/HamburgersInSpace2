@@ -4,21 +4,27 @@ using UnityEngine;
 public class CustomTextField : MonoBehaviour {
     public string Prefix;
     public string Postfix;
-    public string Property;
     
-    TextMeshPro text;
+    public bool Round;
+    
+    TextMeshProUGUI _text;
 
-    void Start() {
-        text = GetComponent<TextMeshPro>();
-        Game.Instance.OnPropertyChanged += PropertyChanged;
-    }   
-
-    void OnDestroy() {
-        Game.Instance.OnPropertyChanged -= PropertyChanged;
+    TextMeshProUGUI Text {
+        get {
+            if (_text == null) {
+                _text = GetComponent<TextMeshProUGUI>();
+            }
+            return _text;
+        }
     }
 
-    void PropertyChanged(string prop, string val) {
-        if (prop != Property) return;
-        text.text = $"{Prefix}{val}{Postfix}";
+    void Start() {
+        if (Round) {
+            Game.Instance.OnNextRound += Changed;
+        }
+    }
+
+    void Changed(string val) {
+        Text.text = $"{Prefix}{val}{Postfix}";
     }
 }

@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour {
 
     public float ShootingSpeed;
     public float BulletSpeedModifier = 1f;
+    public float BlockingPenalty = 0.5f;
 
     public float Deadzone = 0.3f;
     public OneShotSound OneShotFire;
@@ -92,7 +93,13 @@ public class PlayerController : MonoBehaviour {
             pressedDash = true;
         }
 
+        var prevBlock = blocking;
         blocking = Input.GetMouseButton(1);
+        
+        if (blocking && !prevBlock) {
+            timeSinceShot = Mathf.Max(0, timeSinceShot - BlockingPenalty);
+        }
+
         animator.SetBool(BlockBool, blocking);
         if (blocking) {
             var mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
@@ -100,7 +107,6 @@ public class PlayerController : MonoBehaviour {
             var diff = (mousePos - transform.position).normalized;
             float deg = Mathf.Atan2(diff.y, diff.x);
             bun.position = transform.position + diff * BunDistance;
-            Debug.Log(transform.position + " " + diff + " " + BunDistance);
             bun.rotation = Quaternion.Euler(0, 0, Mathf.Rad2Deg * deg - 90);
         }
 

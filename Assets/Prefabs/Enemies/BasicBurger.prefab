@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 6544167167929543358}
   - component: {fileID: 8694167110668046269}
   m_Layer: 8
-  m_Name: Enemy
+  m_Name: BasicBurger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

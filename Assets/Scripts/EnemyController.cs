@@ -43,6 +43,9 @@ public class EnemyController : MonoBehaviour {
         animator = GetComponent<Animator>();
         explosion = GetComponent<ExplosionCreator>();
         healthBarInner = transform.Find("HealthbarHolder/HealthbarInner");
+
+        timeSinceBurst = TimeBetweenBursts * 0.5f;
+        Game.Instance.Spawned(this);
     }
 
     void Update() {
@@ -159,6 +162,7 @@ public class EnemyController : MonoBehaviour {
 
     public void Die() {
         explosion.Create();
+        Game.Instance.Killed(this);
         Destroy(gameObject);
     }
 }
