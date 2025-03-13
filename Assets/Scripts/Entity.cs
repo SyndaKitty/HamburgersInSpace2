@@ -11,6 +11,10 @@ public abstract class Entity :MonoBehaviour
         set
         {
             _health = value;
+            if (value <= 0)
+            {
+                Die();
+            }
             HealthChanged(value);
         }
     }
@@ -23,4 +27,5 @@ public abstract class Entity :MonoBehaviour
     public abstract void HealthChanged(float health);
     public abstract void Damage(float damage);
     public abstract void Die();
+    public abstract void Push(Vector2 force);
 }

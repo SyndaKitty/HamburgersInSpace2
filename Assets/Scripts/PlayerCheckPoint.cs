@@ -11,7 +11,7 @@ public class PlayerCheckPoint : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player")
         {
-            Game.Instance.SetActiveCheckPoint(this);
+            
         }
     }
 

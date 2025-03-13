@@ -3,3 +3,25 @@ Hamburgers in Space 2 brainstorming
 What is the scope of the environment?
 What happens when the player dies?
 Is there a checkpoint system, or a lives system?
+
+Multiple types of weapons
+    Simple machine gun
+        Spread increases as its fired
+        Constant rate
+        infinite ammo
+        impact damage, low damage
+    Seeking missles
+        Hold trigger to aquire targets
+        Missiles stand-by player until trigger released
+        Missiles seek their targets
+        Small AOE, High damage
+        20 Missiles
+    Bomb
+        Hold trigger to throw further
+        Release trigger to throw
+        Large AOE, Medium damage
+        10 bombs
+
+Shield can only take a limited number of hits before breaking, at which point the player is staggered
+leaving them with low movement speed for a moment
+    

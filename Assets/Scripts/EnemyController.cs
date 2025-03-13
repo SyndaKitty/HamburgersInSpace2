@@ -185,4 +185,9 @@ public class EnemyController : Entity
         EventBus.EnemyKilled(this);
         Destroy(gameObject);
     }
+
+    public override void Push(Vector2 force)
+    {
+        throw new System.NotImplementedException();
+    }
 }

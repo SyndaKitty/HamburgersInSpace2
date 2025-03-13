@@ -5,7 +5,7 @@ public class CameraController : MonoBehaviour
     public float SmoothTime;
     public float MaxSpeed;
     [Range(0f, 1f)]
-    public float LeanAmount;
+    public float LeanAmount = 1;
 
     Vector3 velocity;
     Camera cam;
@@ -18,15 +18,11 @@ public class CameraController : MonoBehaviour
     void LateUpdate()
     {
         Vector3 target;
-        if (Game.Instance.Player)
+        if (Game.Instance.Player is not null)
         {
             target = Game.Instance.Player.transform.position;
         }
-        else if (Game.Instance.ActiveCheckpoint != null)
-        {
-            target = Game.Instance.ActiveCheckpoint.transform.position;
-        }
-        else
+        else 
         {
             target = Vector3.zero;
         }
