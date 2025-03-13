@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3065364495938630153}
-  - component: {fileID: 6721119362206783618}
   - component: {fileID: 3065364495938630198}
   - component: {fileID: 3065364495938630152}
   - component: {fileID: 3065364495938630155}
@@ -35,28 +34,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6721119362206783618
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3065364495938630199}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b28f1d23519728b4fa6c99d062e40045, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Damage: 20
-  Weight: 0.1
-  WaitTime: 0.13
-  Speed: 20
-  InaccuracyDeviation: 0.1
-  InnaccuracyDegrees: 0.1
-  SourceSpeedTransfer: 0.5
-  OnImpactSound: {fileID: 3426595071279391358, guid: c81aad03973bb014e8c1e6aa3eb2f4b1, type: 3}
-  OnShieldSound: {fileID: 0}
-  FadeTime: 0.35
 --- !u!50 &3065364495938630198
 Rigidbody2D:
   serializedVersion: 4

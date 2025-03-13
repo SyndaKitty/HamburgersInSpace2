@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class ProjectileBase : MonoBehaviour, Projectile
+public class BasicProjectile : MonoBehaviour, Projectile
 {
     public float Damage;
     public Team Team;
@@ -15,7 +15,7 @@ public abstract class ProjectileBase : MonoBehaviour, Projectile
     public OneShotSound OnImpactSound;
     public OneShotSound OnShieldSound;
 
-    public float Weight { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+    public float Weight { get; set; }
 
     public void Awake()
     {
@@ -24,7 +24,7 @@ public abstract class ProjectileBase : MonoBehaviour, Projectile
         Init();
     }
 
-    public abstract void Init();
+    public void Init() { }
     
 
     public void Fire(Vector2 velocity, float speedModifier, Vector2 sourceVelocity)
