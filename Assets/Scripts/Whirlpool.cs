@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public class Whirlpool : MonoBehaviour {
+public class Whirlpool : MonoBehaviour
+{
     public EnemyController ToSpawn;
 
     public float SpawnTime;
@@ -14,19 +15,23 @@ public class Whirlpool : MonoBehaviour {
     float t;
     bool appeared;
 
-    void Start() {
+    void Start()
+    {
         sr = GetComponent<SpriteRenderer>();
     }
 
-    void Update() {
+    void Update()
+    {
         t += Time.deltaTime;
-        
-        if (!appeared) {
+
+        if (!appeared)
+        {
             transform.rotation *= Quaternion.Euler(0, 0, -RotationSpeed.Evaluate(0) * Time.deltaTime);
             var color = sr.color;
             color.a = t / AppearTime;
             sr.color = color;
-            if (t > AppearTime) {
+            if (t > AppearTime)
+            {
                 appeared = true;
                 t = 0;
             }
@@ -34,27 +39,32 @@ public class Whirlpool : MonoBehaviour {
         }
         transform.rotation *= Quaternion.Euler(0, 0, -RotationSpeed.Evaluate(t / SpawnTime) * Time.deltaTime);
 
-        if (!spawned) {
-            if (t > SpawnTime) {
+        if (!spawned)
+        {
+            if (t > SpawnTime)
+            {
                 var enemy = Instantiate(ToSpawn);
                 enemy.transform.position = transform.position;
                 spawned = true;
             }
         }
-        else {
+        else
+        {
             float newT = t - SpawnTime;
             transform.localScale = Vector3.one * (1 + ExpandAmount * newT / ExpandTime);
             var color = sr.color;
             color.a = 1 - newT / ExpandTime;
             sr.color = color;
 
-            if (newT > ExpandTime) {
+            if (newT > ExpandTime)
+            {
                 Die();
             }
         }
     }
 
-    void Die() {
+    void Die()
+    {
         Destroy(gameObject);
     }
 }

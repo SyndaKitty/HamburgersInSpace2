@@ -1,9 +1,11 @@
 using UnityEngine;
 
-public class Rotate : MonoBehaviour {
+public class Rotate : MonoBehaviour
+{
     public float Speed;
 
-    void Update() {
+    void Update()
+    {
         transform.rotation *= Quaternion.Euler(0, 0, Speed * Time.deltaTime);
     }
 }

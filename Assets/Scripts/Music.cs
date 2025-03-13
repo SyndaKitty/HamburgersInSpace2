@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public class Music : MonoBehaviour {
+public class Music : MonoBehaviour
+{
     public AudioClip[] Tracks;
     public float FadeTime = 1f;
     public float VolumeLevel;
@@ -12,17 +13,21 @@ public class Music : MonoBehaviour {
 
     bool odd = true;
 
-    void Start() {
+    void Start()
+    {
         source = GetComponent<AudioSource>();
         secondarySource = transform.Find("Secondary").GetComponent<AudioSource>();
     }
 
-    public void PlayTrack(int index) {
-        if (odd) {
+    public void PlayTrack(int index)
+    {
+        if (odd)
+        {
             secondarySource.clip = Tracks[index];
             secondarySource.Play();
         }
-        else {
+        else
+        {
             source.clip = Tracks[index];
             source.Play();
         }
@@ -30,25 +35,31 @@ public class Music : MonoBehaviour {
         fading = true;
     }
 
-    void Update() {
+    void Update()
+    {
         if (!fading) return;
         t += Time.deltaTime;
         float T = Mathf.Clamp01(t / FadeTime);
 
-        if (odd) {
+        if (odd)
+        {
             source.volume = VolumeLevel * (1 - T);
             secondarySource.volume = VolumeLevel * T;
         }
-        else {
+        else
+        {
             source.volume = VolumeLevel * T;
             secondarySource.volume = VolumeLevel * (1 - T);
         }
-        
-        if (t > FadeTime) {
-            if (odd) {
+
+        if (t > FadeTime)
+        {
+            if (odd)
+            {
                 source.Stop();
             }
-            else {
+            else
+            {
                 secondarySource.Stop();
             }
 

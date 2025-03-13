@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public class CameraController : MonoBehaviour {
+public class CameraController : MonoBehaviour
+{
     public float SmoothTime;
     public float MaxSpeed;
     [Range(0f, 1f)]
@@ -9,19 +10,24 @@ public class CameraController : MonoBehaviour {
     Vector3 velocity;
     Camera cam;
 
-    void Start() {
+    void Start()
+    {
         cam = GetComponent<Camera>();
     }
 
-    void LateUpdate() {
+    void LateUpdate()
+    {
         Vector3 target;
-        if (Game.Instance.Player) {
+        if (Game.Instance.Player)
+        {
             target = Game.Instance.Player.transform.position;
         }
-        else if (Game.Instance.ActiveCheckpoint != null) {
+        else if (Game.Instance.ActiveCheckpoint != null)
+        {
             target = Game.Instance.ActiveCheckpoint.transform.position;
         }
-        else {
+        else
+        {
             target = Vector3.zero;
         }
 

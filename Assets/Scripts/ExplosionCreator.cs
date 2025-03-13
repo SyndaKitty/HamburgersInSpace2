@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public class ExplosionCreator : MonoBehaviour {
+public class ExplosionCreator : MonoBehaviour
+{
     public Mesh mesh;
     public GameObject ParticlePrefab;
     public Texture2D tex;
@@ -11,18 +12,23 @@ public class ExplosionCreator : MonoBehaviour {
     public bool go;
     public OneShotSound ExplosionSound;
 
-    void Update() {
-        if (go) {
+    void Update()
+    {
+        if (go)
+        {
             Create();
             go = false;
         }
     }
 
-    public void Create() {
-        if (ExplosionSound) {
+    public void Create()
+    {
+        if (ExplosionSound)
+        {
             Instantiate(ExplosionSound);
         }
-        for (int i = 0; i < mesh.triangles.Length; i += 3) {
+        for (int i = 0; i < mesh.triangles.Length; i += 3)
+        {
             var v1 = mesh.vertices[mesh.triangles[i]];
             var v2 = mesh.vertices[mesh.triangles[i + 1]];
             var v3 = mesh.vertices[mesh.triangles[i + 2]];
@@ -35,11 +41,12 @@ public class ExplosionCreator : MonoBehaviour {
         }
     }
 
-    void CreateTriangle(Vector3[] vertices, Vector2[] uvs, Texture2D tex) {
+    void CreateTriangle(Vector3[] vertices, Vector2[] uvs, Texture2D tex)
+    {
         vertices[0] *= 0.5f * Scale.x;
         vertices[1] *= 0.5f * Scale.y;
         vertices[2] *= 0.5f * Scale.z;
-        
+
         var particle = Instantiate(ParticlePrefab);
         var filter = particle.GetComponent<MeshFilter>();
         var renderer = particle.GetComponent<MeshRenderer>();
@@ -53,13 +60,13 @@ public class ExplosionCreator : MonoBehaviour {
         vertices[2] -= midpoint;
 
         (midpoint.y, midpoint.z) = (midpoint.z, midpoint.y);
-        
+
         particle.transform.position = transform.position + midpoint;
         particle.transform.rotation = Quaternion.Euler(-90f, 0f, 0f);
 
         filter.mesh = new Mesh();
         filter.mesh.SetVertices(vertices);
-        filter.mesh.SetIndices(new[] {0, 1, 2}, MeshTopology.Triangles, 0);
+        filter.mesh.SetIndices(new[] { 0, 1, 2 }, MeshTopology.Triangles, 0);
         filter.mesh.SetUVs(0, uvs);
         filter.mesh.RecalculateNormals();
         filter.mesh.RecalculateBounds();

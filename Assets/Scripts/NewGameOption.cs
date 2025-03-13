@@ -2,9 +2,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-public class NewGameOption : MonoBehaviour {
+public class NewGameOption : MonoBehaviour
+{
     Rigidbody2D rb;
-    
+
     public Vector3 InitialPosition;
     public Vector2 StartingVelocity;
     public Transform Anchor;
@@ -25,49 +26,58 @@ public class NewGameOption : MonoBehaviour {
     float t;
     Collider2D col;
 
-    void Start() {
-        
+    void Start()
+    {
+
         transform.position = InitialPosition;
         velocity = StartingVelocity;
         xScale = Stretch;
         anchorStart = Anchor.position;
         col = GetComponent<Collider2D>();
 
-        if (Quit && Application.platform == RuntimePlatform.WebGLPlayer) {
+        if (Quit && Application.platform == RuntimePlatform.WebGLPlayer)
+        {
             Text.enabled = false;
             gameObject.SetActive(false);
             enabled = false;
         }
     }
 
-    void Update() {
+    void Update()
+    {
         t += AnimSpeed * Time.deltaTime;
 
         xScale += StretchSpeed * Time.deltaTime;
         xScale = Mathf.Min(1, xScale);
         transform.localScale = new Vector3(xScale, 1, 1);
-        
+
         if (!Clickable) return;
         var collider = Physics2D.OverlapBox(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.one * 0.05f, 0);
-        if (collider != null && collider == col) {
+        if (collider != null && collider == col)
+        {
             Text.fontSize = 9;
             Text.fontStyle = FontStyles.Bold;
-            if (Input.GetMouseButtonDown(0)) {
-                if (Quit) {
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (Quit)
+                {
                     Application.Quit();
                 }
-                else {
+                else
+                {
                     SceneManager.LoadSceneAsync(1, LoadSceneMode.Single);
                 }
             }
         }
-        else {
+        else
+        {
             Text.fontSize = 8;
             Text.fontStyle = FontStyles.Normal;
         }
     }
 
-    void FixedUpdate() {
+    void FixedUpdate()
+    {
         Vector3 force = SpringWeight * (Anchor.position - transform.position);
         velocity += force * Time.fixedDeltaTime;
         velocity *= 0.91f;

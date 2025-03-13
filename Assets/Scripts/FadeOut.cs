@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public class FadeOut : MonoBehaviour {
+public class FadeOut : MonoBehaviour
+{
     public float Duration;
     public bool Shrink;
 
@@ -8,21 +9,25 @@ public class FadeOut : MonoBehaviour {
 
     float at;
 
-    void Start() {
-        
+    void Start()
+    {
+
     }
 
-    void Update() {
+    void Update()
+    {
         at += Time.deltaTime;
 
         float t = Curve.Evaluate(at / Duration);
 
-        if (at >= Duration) {
+        if (at >= Duration)
+        {
             Destroy(gameObject);
             return;
         }
 
-        if (Shrink) {
+        if (Shrink)
+        {
             transform.localScale = Vector3.one * t;
         }
     }

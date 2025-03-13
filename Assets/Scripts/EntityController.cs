@@ -59,6 +59,7 @@ public class EntityController : MonoBehaviour {
     }
 
     void SpinTowards(Vector2 target) {
+        // TODO: Windup animation, show trajectory
         anim.SetBool(SpinnyParameter, true);
         spinning = true;
         t = 0;
@@ -67,17 +68,13 @@ public class EntityController : MonoBehaviour {
     }
 
     void Blink() {
-        if (right && Random.Range(0, 1f) < BlinkChancePerSecond * Time.deltaTime) {
-            rightEye.SetTrigger(BlinkTrigger);
-        }
-        if (left && Random.Range(0, 1f) < BlinkChancePerSecond * Time.deltaTime) {
-            leftEye.SetTrigger(BlinkTrigger);
-        }
-        if (down && Random.Range(0, 1f) < BlinkChancePerSecond * Time.deltaTime) {
-            downEye.SetTrigger(BlinkTrigger);
-        }
-        if (up && Random.Range(0, 1f) < BlinkChancePerSecond * Time.deltaTime) {
-            upEye.SetTrigger(BlinkTrigger);
+        var flags = new bool[] { right, left, down, up };
+        var eyes = new Animator[] { rightEye, leftEye, downEye, upEye };
+
+        for (int i = 0; i < 4; i++) {
+            if (flags[i] && Random.Range(0, 1f) < BlinkChancePerSecond * Time.deltaTime) {
+                eyes[i].SetTrigger(BlinkTrigger);
+            }
         }
     }
 
@@ -101,7 +98,7 @@ public class EntityController : MonoBehaviour {
                 t += Time.deltaTime;
                 if (t > SpinWaitTime) {
                     float delta = Random.Range(0, Mathf.PI * 2);
-                    SpinTowards(new Vector3(Mathf.Cos(delta), Mathf.Sin(delta)) * 5);
+                    SpinTowards(transform.position + new Vector3(Mathf.Cos(delta), Mathf.Sin(delta)) * 5);
                 }
             }
         }

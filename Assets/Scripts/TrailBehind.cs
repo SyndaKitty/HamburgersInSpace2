@@ -8,12 +8,14 @@ public class TrailBehind : MonoBehaviour
     Rigidbody2D rb;
     Vector3 previous;
 
-    void Start() {
+    void Start()
+    {
         previous = Target.position;
         rb = Target.GetComponentInParent<Rigidbody2D>();
     }
 
-    void Update() {
+    void Update()
+    {
         transform.position = Target.position - (Vector3)rb.velocity * Amount;
     }
 }
